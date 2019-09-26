@@ -1,0 +1,12 @@
+extends layout
+
+include mixins/_sakeCard
+include mixins/_pagination
+
+block content
+  .inner
+    h2= title
+    .sakes
+      each sake in sakes
+        +sakeCard(sake)
+    +pagination(page, pages, count)

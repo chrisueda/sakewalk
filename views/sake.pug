@@ -1,0 +1,29 @@
+extends layout
+
+include mixins/_reviewForm
+include mixins/_review
+
+block content
+  .single
+    .single__hero
+      img.single__image(src=`/uploads/${sake.photo || 'sake.jpg'}`)
+      h2.title.title--single
+        a(href=`/sakes/${sake.slug}`) #{sake.name}
+
+  .single__details.inner
+    p= sake.description
+
+    if sake.tags
+      ul.tags
+        each tag in sake.tags
+          li.tag
+            a.tag__link(href=`/tags/${tag}`)
+              span.tag__text ##{tag}
+    if user
+      +reviewForm(sake)
+
+    if sake.reviews
+      .reviews
+        each review in sake.reviews
+          .review
+            +review(review)

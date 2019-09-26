@@ -1,0 +1,24 @@
+mixin sakeForm(sake = {})
+  form(action=`/sake/add/${sake._id || ''}` method="POST" class="card" enctype="multipart/form-data")
+    label(for="name") Name
+    input(type="text" name="name" value=sake.name)
+    label(for="description") Description
+    textarea(name="description")= sake.description
+    //- Image
+    label(for="photo") Photo
+      input(type="file" name='photo' accept='image/gif image/png image/jpeg')
+      if sake.photo
+        img(src=`/uploads/${sake.photo}`, alt=sake.name width =200)
+    label(for="category") Main Category
+    - const main = ['Junmai', 'Honjozo', 'Junmai Ginjo', 'Ginjo', 'Junmai Daiginjo', 'Daiginjo']
+    select(name='mainCategory')
+      option(value='0' selected=(!sake.mainCategory)) -- Select --
+      each choice in main
+        option(value=choice selected=(choice === sake.mainCategory)) #{choice}
+    label(for="secondaryCategory") Secondary Category
+    - const secondary = ['Nigori', 'Taru', 'Nama', 'Koshu', 'Kijoshu', 'Genshu']
+    select(name='secondaryCategory')
+      option(value='0', selected=(!sake.secondaryCategory)) -- Select --
+      each choice in secondary
+        option(value=choice selected=(choice === sake.secondaryCategory)) #{choice}
+    input(type="submit" value="Save" class="button")

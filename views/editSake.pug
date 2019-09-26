@@ -1,0 +1,8 @@
+extends layout
+
+include mixins/_sakeForm
+
+block content
+  .inner
+    h2= title
+    +sakeForm(sake)

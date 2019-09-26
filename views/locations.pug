@@ -1,0 +1,10 @@
+extends layout
+
+include mixins/_locationCard
+
+block content
+  .inner
+    h2= title
+    .locations
+      each location in locations
+        +locationCard(location)
