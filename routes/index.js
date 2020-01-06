@@ -7,7 +7,8 @@ const authController = require("../controllers/authController");
 const reviewController = require("../controllers/reviewController");
 const { catchErrors } = require("../handlers/errorHandlers");
 
-router.get("/", catchErrors(locationController.getLocations));
+//router.get("/", catchErrors(locationController.getLocations));
+router.get("/", locationController.homePage);
 // Location Routes
 router.get("/locations", catchErrors(locationController.getLocations));
 router.get("/locations/:id/edit", catchErrors(locationController.editLocation));
